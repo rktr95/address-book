@@ -52,6 +52,13 @@ class Address(BaseModel):
             raise ValueError('longitude must be between -180 and 180')
         return v
 
+        
+    @validator('zip')
+    def check_zip(cls, v):
+        if not v.isnumeric():
+            raise ValueError('Invalid zipcode')
+        return v
+
 def get_db_connection():
     """creates database connections
 
